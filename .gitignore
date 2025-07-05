@@ -1,0 +1,126 @@
+############################################
+# OS- & editor-specific junk
+############################################
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+*.bak
+
+############################################
+# Python byte-code & C-extensions
+############################################
+__pycache__/
+*.py[cod]
+*.pyo
+*.so
+*.o
+*.a
+*.dylib
+
+############################################
+# Virtual environments / dependency managers
+############################################
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+.python-version
+
+############################################
+# Package distribution / build artifacts
+############################################
+build/
+dist/
+*.egg-info/
+*.egg
+.eggs/
+pip-wheel-metadata/
+
+############################################
+# Jupyter Notebook checkpoints
+############################################
+.ipynb_checkpoints/
+
+############################################
+# IDE / editor configs
+############################################
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+############################################
+# Test & coverage output
+############################################
+.tox/
+.nox/
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.cache/
+
+############################################
+# Environment / secrets files
+############################################
+*.env
+.env.*
+*.envrc
+
+############################################
+# TensorBoard & experiment logs
+############################################
+logs/
+runs/
+tensorboard/
+
+############################################
+# Model checkpoints & weights
+############################################
+#  – Framework-agnostic
+checkpoints/
+saved_model/
+saved_models/
+models/
+weights/
+
+#  – File types
+*.ckpt
+*.ckpt.*
+*.pt
+*.pth
+*.onnx
+*.h5
+*.hdf5
+*.hdf(adjust if you want to track them)
+*.pb
+*.tflite
+*.mlmodel
+*.trt
+*.nnp
+*.params
+*.pkl
+*.joblib
+
+############################################
+# Data dumps
+############################################
+data/
+datasets/
+*.npy
+*.npz
+*.csv
+*.tsv
+
+############################################
+# Large archives & artifacts
+############################################
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# End of file
