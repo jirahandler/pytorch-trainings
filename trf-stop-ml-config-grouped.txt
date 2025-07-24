@@ -1,0 +1,69 @@
+### Job settings
+Job: "JOB_NAME"
+    ReadFrom: NTUP
+    NtuplePaths: "./"
+    OutputDir: "OUTPUT_DIRECTORY"
+    Label: "SIGNAL_LABEL"
+    ExperimentLabel: "ATLAS"
+    PlotLabel: "Stop tN1"
+    CmeLabel: "13.6 TeV"
+    LumiLabel: "-- fb^{-1}"
+    POI: "SigXsecOverSM"
+    PlotOptions: "YIELDS, OVERSIG"
+    RatioYmax: 50
+    RatioYmin: 0
+    RatioType: "SOVERSQRT(B)"
+    DebugLevel: 1
+    ImageFormat: png
+    PreFitLabel: "Pre-fit"
+    PostFitLabel: "Post-fit"
+
+### Fit configurations
+Fit: "fit"
+    FitType: SPLUSB
+    FitRegion: CRSR
+    UseMinos: SigXsecOverSM
+    FitStrategy: 2
+    POIAsimov: 1.0
+
+### Limit configurations
+Limit: "limit"
+    LimitType: ASYMPTOTIC
+
+### Signal region
+Region: "SR_all"
+    Type: SIGNAL
+    Label: "SR selection"
+    DataType: ASIMOV
+    Variable: "DISCRIMINANT_BRANCH",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+### Samples
+# --- This block will be replaced by the python script ---
+SIGNAL_SAMPLE_BLOCKS
+# ----------------------------------------------------
+
+Sample: "background"
+    Type: BACKGROUND
+    Group: "bkg"
+    Regions: SR_all
+    NtupleFiles: BACKGROUND_NTUPLE_FILE
+    NtupleNames: BACKGROUND_NTUPLE_NAME
+    FillColor: 416
+
+### Fixed Normalization
+# SIGNAL_SCALE_FACTOR
+NormFactor: "signal_sf"
+    Nominal: 1
+    Min: 0
+    Max: 100
+    Samples: SIGNAL_SAMPLE_NAMES
+
+### Parameter of Interest
+NormFactor: "SigXsecOverSM"
+    Title: "#mu(SIGNAL_LABEL)"
+    Nominal: 1
+    Min: 0
+    Max: 10
+    Samples: SIGNAL_SAMPLE_NAMES
