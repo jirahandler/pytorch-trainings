@@ -1,0 +1,114 @@
+### Job settings
+Job: "sT_tN1_1000_202_200"
+    ReadFrom: NTUP
+    NtuplePaths: "./"
+    NtupleFile: "run3_btag_stopana"
+    OutputDir: "./sT_tN1_1000_202_200_fit"
+    Label: "stop sT_tN1_1000_202_200"
+    ExperimentLabel: "ATLAS"
+    PlotLabel: "Stop tN1"
+    CmeLabel: "13.6 TeV"
+    LumiLabel: "-- fb^{-1}"
+    POI: "SigXsecOverSM"
+    PlotOptions: "YIELDS, OVERSIG"
+    RatioYmax: 0.5
+    RatioYmin: -0.5
+    RatioType: "SOVERSQRT(B)"
+    DebugLevel: 1
+    ImageFormat: png
+    PreFitLabel: "Pre-fit"
+    PostFitLabel: "Post-fit"
+
+### Fit configurations
+Fit: "fit"
+    FitType: SPLUSB
+    FitRegion: CRSR
+    UseMinos: SigXsecOverSM
+    FitStrategy: 2
+    POIAsimov: 1.0
+
+### Limit configurations
+Limit: "limit"
+    LimitType: ASYMPTOTIC
+
+### Signal region
+Region: "SR_all"
+    Type: SIGNAL
+    Label: "SR selection"
+    DataType: ASIMOV
+    Variable: "discriminant_stopana",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+### Background Samples (grouped into “bkg”)
+Sample: "znunu"
+    Type: BACKGROUND
+    Title: "Z #rightarrow #nu#nu"
+    Group: "bkg"
+    FillColor: 856
+    NtupleName: "znunu_stopana"
+
+Sample: "ttbar"
+    Type: BACKGROUND
+    Title: "t#bar{t}"
+    Group: "bkg"
+    FillColor: 602
+    NtupleName: "ttbar_stopana"
+
+Sample: "wlnu"
+    Type: BACKGROUND
+    Title: "W+jets"
+    Group: "bkg"
+    FillColor: 881
+    NtupleName: "wlnu_stopana"
+
+Sample: "diboson"
+    Type: BACKGROUND
+    Title: "Diboson"
+    Group: "bkg"
+    FillColor: 427
+    NtupleName: "diboson_stopana"
+
+Sample: "dijet"
+    Type: BACKGROUND
+    Title: "Dijet"
+    Group: "bkg"
+    FillColor: 798
+    NtupleName: "dijet_stopana"
+
+Sample: "singletop"
+    Type: BACKGROUND
+    Title: "Single top"
+    Group: "bkg"
+    FillColor: 400
+    NtupleName: "singletop_stopana"
+
+Sample: "zll"
+    Type: BACKGROUND
+    Title: "Z #rightarrow ll"
+    Group: "bkg"
+    FillColor: 856
+    NtupleName: "zll_stopana"
+
+### Signal Sample (grouped into “sig”)
+Sample: "signal"
+    Type: SIGNAL
+    Title: "stop sT_tN1_1000_202_200"
+    Group: "sig"
+    LineColor: 632
+    NtupleName: "sT_tN1_1000_202_200_stopana"
+
+### Fixed Normalization
+NormFactor: "signal_sf"
+    Nominal: 1.00000000
+    Min: 1.00000000
+    Max: 1.00000000
+    Samples: signal
+
+### Parameter of Interest
+NormFactor: "SigXsecOverSM"
+    Title: "#mu(stop sT_tN1_1000_202_200)"
+    Nominal: 1.00000000
+    Min: 0
+    Max: 10
+    Samples: signal

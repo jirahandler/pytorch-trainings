@@ -1,0 +1,94 @@
+### Job settings
+Job: "stop_combined"
+    ReadFrom: NTUP
+    NtuplePaths: "./"
+    OutputDir: "./stop_combined_fit_balanced_SnB"
+    Label: "stop combined"
+    ExperimentLabel: "ATLAS"
+    PlotLabel: "Stop tN1"
+    CmeLabel: "13.6 TeV"
+    LumiLabel: "-- fb^{-1}"
+    POI: "SigXsecOverSM"
+    PlotOptions: "YIELDS, OVERSIG"
+    RatioYmax: 50
+    RatioYmin: 0
+    RatioType: "SOVERSQRT(B)"
+    DebugLevel: 1
+    ImageFormat: png
+    PreFitLabel: "Pre-fit"
+    PostFitLabel: "Post-fit"
+
+### Fit configurations
+Fit: "fit"
+    FitType: SPLUSB
+    FitRegion: CRSR
+    UseMinos: SigXsecOverSM
+    FitStrategy: 2
+    POIAsimov: 1.0
+
+### Limit configurations
+Limit: "limit"
+    LimitType: ASYMPTOTIC
+
+### Signal region
+Region: "SR_all"
+    Type: SIGNAL
+    Label: "SR selection"
+    DataType: ASIMOV
+    Variable: "discriminant_stopana",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+### Samples
+# --- This block will be replaced by the python script ---
+Sample: "signal_0"
+    Type: SIGNAL
+    Title: "stop combined (1)"
+    Group: "sig"
+    Regions: SR_all
+    NtupleFiles: "discriminant_sT_tN1_1000_102_100_stopana"
+    NtupleNames: "sT_tN1_1000_102_100_stopana"
+    FillColor: 632
+
+Sample: "signal_1"
+    Type: SIGNAL
+    Title: "stop combined (2)"
+    Group: "sig"
+    Regions: SR_all
+    NtupleFiles: "discriminant_sT_tN1_1000_202_200_stopana"
+    NtupleNames: "sT_tN1_1000_202_200_stopana"
+    FillColor: 632
+
+Sample: "signal_2"
+    Type: SIGNAL
+    Title: "stop combined (3)"
+    Group: "sig"
+    Regions: SR_all
+    NtupleFiles: "discriminant_sT_tN1_1000_3_1_stopana"
+    NtupleNames: "sT_tN1_1000_3_1_stopana"
+    FillColor: 632
+# ----------------------------------------------------
+
+Sample: "background"
+    Type: BACKGROUND
+    Group: "bkg"
+    Regions: SR_all
+    NtupleFiles: "discriminant_background_stopana"
+    NtupleNames: "background_stopana"
+    FillColor: 416
+
+### Fixed Normalization
+# 1.000000
+NormFactor: "signal_sf"
+    Nominal: 1
+    Min: 0
+    Max: 100
+    Samples: signal_0, signal_1, signal_2
+
+### Parameter of Interest
+NormFactor: "SigXsecOverSM"
+    Title: "#mu(stop combined)"
+    Nominal: 1
+    Min: 0
+    Max: 10
+    Samples: signal_0, signal_1, signal_2

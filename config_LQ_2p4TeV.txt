@@ -1,0 +1,147 @@
+### Job settings
+Job: "LQ_2p4TeV"
+    ReadFrom: NTUP
+    NtuplePaths: "./"
+    NtupleFile: "discriminant_ntuples_lq_ctagged"
+    OutputDir: "./LQ_2p4TeV_ML_ctagged_fit"
+    Label: "LQ 2.4 TeV (x1000)"
+    ExperimentLabel: "Local"
+    PlotLabel: " MG5+PY8"
+    CmeLabel: "13TeV"
+    LumiLabel: "140 fb^{-1}"
+    POI: "SigXsecOverSM"
+    PlotOptions: "YIELDS, OVERSIG"
+    RatioYmax: 0.5
+    RatioYmin: -0.5
+    RatioType: "SOVERSQRT(B)"
+    DebugLevel: 1
+    ImageFormat: png
+    PreFitLabel: "Pre-fit"
+    PostFitLabel: "Post-fit"
+
+### Fit configurations
+Fit: "fit"
+    FitType: SPLUSB
+    FitRegion: CRSR
+    UseMinos: SigXsecOverSM
+    FitStrategy: 2
+    POIAsimov: 1.0
+
+### Limit configurations
+Limit: "limit"
+    LimitType: ASYMPTOTIC
+
+### Signal regions
+Region: "SR_c_tagged"
+    Type: SIGNAL
+    Label: "SR c-tagged"
+    DataType: ASIMOV
+    Variable: "discriminant_lq",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+Region: "SR_untagged"
+    Type: SIGNAL
+    Label: "SR untagged"
+    DataType: ASIMOV
+    Variable: "discriminant_lq",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+### Background Samples
+Sample: "znunu_tagged"
+    Type: BACKGROUND
+    Title: "Z #rightarrow #nu#nu"
+    FillColor: 856
+    Regions: SR_c_tagged
+    Group: "Z #rightarrow #nu#nu"
+    NtupleName: "znunu_c_tagged_lq"
+
+Sample: "znunu_untagged"
+    Type: BACKGROUND
+    Title: "Z #rightarrow #nu#nu"
+    FillColor: 856
+    Regions: SR_untagged
+    Group: "Z #rightarrow #nu#nu"
+    NtupleName: "znunu_untagged_lq"
+
+Sample: "ttbar_tagged"
+    Type: BACKGROUND
+    Title: "t#bar{t}"
+    FillColor: 602
+    Regions: SR_c_tagged
+    Group: "t#bar{t}"
+    NtupleName: "ttbar_c_tagged_lq"
+
+Sample: "ttbar_untagged"
+    Type: BACKGROUND
+    Title: "t#bar{t}"
+    FillColor: 602
+    Regions: SR_untagged
+    Group: "t#bar{t}"
+    NtupleName: "ttbar_untagged_lq"
+
+Sample: "wjets_tagged"
+    Type: BACKGROUND
+    Title: "W+jets"
+    FillColor: 881
+    Regions: SR_c_tagged
+    Group: "W+jets"
+    NtupleName: "wjets_c_tagged_lq"
+
+Sample: "wjets_untagged"
+    Type: BACKGROUND
+    Title: "W+jets"
+    FillColor: 881
+    Regions: SR_untagged
+    Group: "W+jets"
+    NtupleName: "wjets_untagged_lq"
+
+### Signal Samples
+Sample: "signal_tagged"
+    Type: SIGNAL
+    Title: "LQ 2.4 TeV (x1000)"
+    LineColor: 632
+    Group: "Signal"
+    Regions: SR_c_tagged
+    NtupleName: "LQ_2p4TeV_c_tagged_lq"
+
+Sample: "signal_untagged"
+    Type: SIGNAL
+    Title: "LQ 2.4 TeV (x1000)"
+    LineColor: 632
+    Group: "Signal"
+    Regions: SR_untagged
+    NtupleName: "LQ_2p4TeV_untagged_lq"
+
+### Fixed Scaling Factors
+NormFactor: "znunu_total_sf"
+    Nominal: 101.736
+    Min: 101.736
+    Max: 101.736
+    Samples: znunu_tagged, znunu_untagged
+
+NormFactor: "wjets_total_sf"
+    Nominal: 19876.78
+    Min: 19876.78
+    Max: 19876.78
+    Samples: wjets_tagged, wjets_untagged
+
+NormFactor: "ttbar_total_sf"
+    Nominal: 499.29
+    Min: 499.29
+    Max: 499.29
+    Samples: ttbar_tagged, ttbar_untagged
+
+NormFactor: "signal_sf"
+    Nominal: 0.48459434
+    Min: 0.48459434
+    Max: 0.48459434
+    Samples: signal_tagged, signal_untagged
+
+NormFactor: "SigXsecOverSM"
+    Title: "#mu(LQ 2.4 TeV (x1000))"
+    Nominal: 1
+    Min: 0
+    Max: 10
+    Samples: signal_tagged, signal_untagged

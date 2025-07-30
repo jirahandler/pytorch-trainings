@@ -1,0 +1,8 @@
+rm -rf .git
+git init
+git add .
+date=$(date '+%Y-%m-%d %H:%M:%S')
+git commit -m "Commit at $(date) "
+git branch -M main
+git remote add origin https://github.com/jirahandler/pytorch-trainings.git
+git push -uf origin main

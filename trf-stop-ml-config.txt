@@ -1,0 +1,122 @@
+### Job settings
+Job: "JOB_NAME"
+    ReadFrom: NTUP
+    NtuplePaths: "./"
+    NtupleFile: "NTUPLE_FILE_NAME"
+    OutputDir: "OUTPUT_DIRECTORY"
+    Label: "SIGNAL_LABEL"
+    ExperimentLabel: "ATLAS"
+    PlotLabel: "Stop tN1"
+    CmeLabel: "13.6 TeV"
+    LumiLabel: "-- fb^{-1}"
+    POI: "SigXsecOverSM"
+    PlotOptions: "YIELDS, OVERSIG"
+    RatioYmax: 0.5
+    RatioYmin: -0.5
+    RatioType: "SOVERSQRT(B)"
+    DebugLevel: 1
+    ImageFormat: png
+    PreFitLabel: "Pre-fit"
+    PostFitLabel: "Post-fit"
+
+### Fit configurations
+Fit: "fit"
+    FitType: SPLUSB
+    FitRegion: CRSR
+    UseMinos: SigXsecOverSM
+    FitStrategy: 2
+    POIAsimov: 1.0
+
+### Limit configurations
+Limit: "limit"
+    LimitType: ASYMPTOTIC
+
+### Signal region
+Region: "SR_all"
+    Type: SIGNAL
+    Label: "SR selection"
+    DataType: ASIMOV
+    Variable: "DISCRIMINANT_BRANCH",20,0.0,1.0
+    VariableTitle: "ML Discriminant"
+    YaxisTitle: "Events"
+
+### Background Samples
+Sample: "znunu"
+    Type: BACKGROUND
+    Title: "Z #rightarrow #nu#nu"
+    FillColor: 856
+    Regions: SR_all
+    Group: "Z #rightarrow #nu#nu"
+    NtupleName: "znunuSUFFIX"
+
+Sample: "ttbar"
+    Type: BACKGROUND
+    Title: "t#bar{t}"
+    FillColor: 602
+    Regions: SR_all
+    Group: "t#bar{t}"
+    NtupleName: "ttbarSUFFIX"
+
+Sample: "wlnu"
+    Type: BACKGROUND
+    Title: "W+jets"
+    FillColor: 881
+    Regions: SR_all
+    Group: "W+jets"
+    NtupleName: "wlnuSUFFIX"
+
+Sample: "diboson"
+    Type: BACKGROUND
+    Title: "Diboson"
+    FillColor: 427
+    Regions: SR_all
+    Group: "Diboson"
+    NtupleName: "dibosonSUFFIX"
+
+Sample: "dijet"
+    Type: BACKGROUND
+    Title: "Dijet"
+    FillColor: 798
+    Regions: SR_all
+    Group: "Dijet"
+    NtupleName: "dijetSUFFIX"
+
+Sample: "singletop"
+    Type: BACKGROUND
+    Title: "Single top"
+    FillColor: 400
+    Regions: SR_all
+    Group: "Single top"
+    NtupleName: "singletopSUFFIX"
+
+Sample: "zll"
+    Type: BACKGROUND
+    Title: "Z #rightarrow ll"
+    FillColor: 856
+    Regions: SR_all
+    Group: "Z #rightarrow ll"
+    NtupleName: "zllSUFFIX"
+
+### Signal Sample
+Sample: "signal"
+    Type: SIGNAL
+    Title: "SIGNAL_LABEL"
+    LineColor: 632
+    Group: "Signal"
+    Regions: SR_all
+    NtupleName: "SIGNAL_NAMESUFFIX"
+
+### Fixed Normalization
+NormFactor: "signal_sf"
+    Nominal: SIGNAL_SCALE_FACTOR
+    Min: SIGNAL_SCALE_FACTOR
+    Max: SIGNAL_SCALE_FACTOR
+    Samples: signal
+
+### Parameter of Interest
+NormFactor: "SigXsecOverSM"
+    Title: "#mu(SIGNAL_LABEL)"
+    Nominal: SIGNAL_SCALE_FACTOR
+    Min: 0
+    Max: 10
+    Samples: signal
